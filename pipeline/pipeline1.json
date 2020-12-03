@@ -253,7 +253,9 @@
 			"recepients": {
 				"type": "Array",
 				"defaultValue": [
-					"['derrickqu88@gmail.com', 'divergencetest@outlook.com','divergencetest2@outlook.com']"
+					"derrickqu88@gmail.com",
+					"divergencetest@outlook.com",
+					"divergencetest2@outlook.com"
 				]
 			}
 		},
