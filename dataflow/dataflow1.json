@@ -1,0 +1,35 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText4",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AlterRow1"
+				},
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"script": "parameters{\n\tFileName as string\n}\nsource(output(\n\t\tInvoiceID as short,\n\t\tVendorID as short,\n\t\tInvoiceNumber as string,\n\t\tInvoiceDate as timestamp 'M/d/yyyy H:mm',\n\t\tInvoiceTotal as double,\n\t\tPaymentTotal as double,\n\t\tCreditTotal as short,\n\t\tTermsID as short,\n\t\tInvoiceDueDate as timestamp 'M/d/yyyy H:mm',\n\t\tPaymentDate as timestamp 'M/d/yyyy H:mm'\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tignoreNoFilesFound: false,\n\twildcardPaths:[($FileName)]) ~> source1\nDerivedColumn1 alterRow(upsertIf(true())) ~> AlterRow1\nsource1 derive(LastUpdatedDate = currentTimestamp()) ~> DerivedColumn1\nAlterRow1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tdeletable:false,\n\tinsertable:false,\n\tupdateable:false,\n\tupsertable:true,\n\tkeys:['InvoiceID'],\n\tformat: 'table',\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true,\n\terrorHandlingOption: 'stopOnFirstError') ~> sink1"
+		}
+	}
+}
