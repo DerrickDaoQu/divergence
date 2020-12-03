@@ -71,6 +71,14 @@
 											"value": "'@{item().name}'",
 											"type": "Expression"
 										}
+									},
+									"datasetParameters": {
+										"source1": {
+											"FileName": {
+												"value": "@item().name",
+												"type": "Expression"
+											}
+										}
 									}
 								},
 								"compute": {
@@ -180,7 +188,7 @@
 										}
 									}
 								},
-								"enableLogging": true,
+								"enableLogging": false,
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true
