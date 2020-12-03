@@ -5,11 +5,20 @@
 			"referenceName": "AzureBlobStorage1",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"FileName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@concat(utcnow(),'_',dataset().FileName)",
+					"type": "Expression"
+				},
 				"container": "archieve"
 			},
 			"columnDelimiter": ",",
@@ -17,6 +26,47 @@
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": []
+		"schema": [
+			{
+				"name": "InvoiceID",
+				"type": "String"
+			},
+			{
+				"name": "VendorID",
+				"type": "String"
+			},
+			{
+				"name": "InvoiceNumber",
+				"type": "String"
+			},
+			{
+				"name": "InvoiceDate",
+				"type": "String"
+			},
+			{
+				"name": "InvoiceTotal",
+				"type": "String"
+			},
+			{
+				"name": "PaymentTotal",
+				"type": "String"
+			},
+			{
+				"name": "CreditTotal",
+				"type": "String"
+			},
+			{
+				"name": "TermsID",
+				"type": "String"
+			},
+			{
+				"name": "InvoiceDueDate",
+				"type": "String"
+			},
+			{
+				"name": "PaymentDate",
+				"type": "String"
+			}
+		]
 	}
 }
