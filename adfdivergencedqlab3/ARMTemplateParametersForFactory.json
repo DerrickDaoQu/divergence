@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfdivergencedqlab3"
+		},
+		"AzureBlobStorage1_connectionString": {
+			"value": ""
+		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
+		"trigger1_properties_typeProperties_scope": {
+			"value": "/subscriptions/3a6713ad-fb61-40a1-8a95-cc80075db0ac/resourceGroups/rgdivergencedqlab3/providers/Microsoft.Storage/storageAccounts/sadivergencedqlab3"
+		}
+	}
+}
